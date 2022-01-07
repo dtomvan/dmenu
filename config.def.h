@@ -10,14 +10,14 @@ static const char *fonts[] = {
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#dbd6b9", "#1f1f28" },
-	[SchemeSel] =  { "#dbd6b9", "#578fd6" },
-	[SchemeSelHighlight] = { "#ffc978", "#005577" },
+	[SchemeNorm] =          { "#dbd6b9", "#1f1f28" },
+	[SchemeSel] =           { "#dbd6b9", "#578fd6" },
+	[SchemeSelHighlight] =  { "#ffc978", "#005577" },
 	[SchemeNormHighlight] = { "#ffc978", "#222222" },
-	[SchemeOut] =  { "#000000", "#00ffff" },
+	[SchemeOut] =           { "#000000", "#00ffff" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
-static unsigned int lines      = 10;
+static unsigned int lines      = 30;
 
 /*
  * Characters not considered part of a word while deleting words
