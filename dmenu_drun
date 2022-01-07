@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# parses known locations for .desktop files
+# written by Nathaniel Maia, June 2018
+#
+# Modified by Tom van Dijk, now shows (unlocalized) names
+
+# associative array to store paths as basename values
+declare -A PATHS
+
+# check we have required software
+if ! hash awk find grep dmenu gtk-launch &>/dev/null; then
+    echo -e "ERROR: This script requires: awk find grep dmenu" && exit 1
+fi
+
+main() {
+    # base file name storage
+    local names=""
+    while read -r f; do
+        name="$(cat "$f" | grep -E "^Name=" | sed -E 's/^Name=(.*)/\1/')"
+        n="$(basename -s .desktop "$f")"
+
+        PATHS["$name"]="$n"
+
+        names="$names
+$name"
+    done <<< "$(find -L /usr/share/applications/ $HOME/Desktop ~/.local/share/applications -type f -name '*.desktop')"
+
+    local ans="$(echo "$names" | sort | dmenu -H $HOME/.dmenu_drun_histfile "$@")"
+    [[ $? != 1 && -n $ans ]] && run "$ans" || return 1
+}
+
+run() {
+    local cmd
+    cmd="${PATHS["$1"]}"
+
+    gtk-launch "$cmd"
+    return $?
+}
+
+main "$@" &
+
+exit 0
