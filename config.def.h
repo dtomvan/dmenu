@@ -10,15 +10,15 @@ static const char *fonts[] = {
 static const char *prompt      = NULL;      /* -p  option; prompt to the left of input field */
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] =          { "#dbd6b9", "#1f1f28" },
-	[SchemeSel] =           { "#dbd6b9", "#578fd6" },
-	[SchemeSelHighlight] =  { "#ffc978", "#005577" },
-	[SchemeNormHighlight] = { "#ffc978", "#222222" },
-	[SchemeOut] =           { "#000000", "#00ffff" },
+	[SchemeNorm] = { "#cdd6f4", "#1e1e2e" },
+	[SchemeSel] = { "#1e1e2e", "#eba0ac" },
+	[SchemeSelHighlight] =  { "#94e2d5", "#7f849c" },
+	[SchemeNormHighlight] = { "#94e2d5", "#7f849c" },
+	[SchemeOut] = { "#000000", "#eba0ac" },
 };
 /* -l option; if nonzero, dmenu uses vertical list with given number of lines */
 static unsigned int lines      = 30;
-static unsigned int maxhist    = 300;
+static unsigned int maxhist    = 100;
 static int histnodup           = 1;	/* if 0, record repeated histories */
 
 /*
